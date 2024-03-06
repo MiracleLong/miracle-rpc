@@ -1,9 +1,10 @@
 package com.miracle.example.provider;
 
 import com.miracle.example.common.service.UserService;
-import com.miracle.rpc.registry.LocalRegistry;
-import com.miracle.rpc.server.HttpServer;
-import com.miracle.rpc.server.VertxHttpServer;
+import rpc.registry.LocalRegistry;
+import rpc.server.HttpServer;
+import rpc.server.VertxHttpServer;
+
 
 /**
  * @author dargon

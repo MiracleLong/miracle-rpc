@@ -2,7 +2,7 @@ package com.miracle.example.consumer;
 
 import com.miracle.example.common.model.User;
 import com.miracle.example.common.service.UserService;
-import com.miracle.rpc.proxy.ServiceProxyFactory;
+import rpc.proxy.ServiceProxyFactory;
 
 /**
  * @author dargon

@@ -1,45 +1,53 @@
-package com.miracle.example.consumer;
+package rpc.proxy;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
-import com.miracle.example.common.model.User;
-import com.miracle.example.common.service.UserService;
 import rpc.model.RpcRequest;
 import rpc.model.RpcResponse;
 import rpc.serializer.JdkSerializer;
 import rpc.serializer.Serializer;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 
 /**
  * @author dargon
  * @create 2024-02-25
+ * @description jdk 动态代理
  */
-public class UserServiceProxy implements UserService {
+public class ServiceProxy implements InvocationHandler {
+
+    /**
+     * 调用代理
+     *
+     * @return
+     * @throws Throwable
+     */
     @Override
-    public User getUser(User user) {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 指定序列化器
-        final Serializer serializer = new JdkSerializer();
+        Serializer serializer = new JdkSerializer();
 
         // 构造请求
         RpcRequest rpcRequest = RpcRequest.builder()
-                .serviceName(UserService.class.getName())
-                .methodName("getUser")
-                .parameterTypes(new Class[]{User.class})
-                .args(new Object[]{user})
+                .serviceName(method.getDeclaringClass().getName())
+                .methodName(method.getName())
+                .parameterTypes(method.getParameterTypes())
+                .args(args)
                 .build();
         try {
-            // 序列化（Java 对象 => 字节数组）
+            // 序列化
             byte[] bodyBytes = serializer.serialize(rpcRequest);
-
             // 发送请求
+            // todo 注意，这里地址被硬编码了（需要使用注册中心和服务发现机制解决）
             try (HttpResponse httpResponse = HttpRequest.post("http://localhost:8080")
                     .body(bodyBytes)
                     .execute()) {
                 byte[] result = httpResponse.bodyBytes();
-                // 反序列化（字节数组 => Java 对象）
+                // 反序列化
                 RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
-                return (User) rpcResponse.getData();
+                return rpcResponse.getData();
             }
         } catch (IOException e) {
             e.printStackTrace();
