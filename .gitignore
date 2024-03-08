@@ -2,10 +2,13 @@
 ##ignore this file##
 /target/
 /.idea/sonarlint
+/.idea/checkstyle-idea.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
 /.settings/
 /.vscode/
 /bin/
-.idea
 
 .classpath
 .project
@@ -49,8 +52,3 @@ Thumbs.db
 /.mvn/
 /mvnw.cmd
 /mvnw
-/.idea/.gitignore
-/.idea/checkstyle-idea.xml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/vcs.xml
