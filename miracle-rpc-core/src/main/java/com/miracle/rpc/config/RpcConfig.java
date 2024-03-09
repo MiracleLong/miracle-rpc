@@ -1,5 +1,6 @@
-package rpc.config;
+package com.miracle.rpc.config;
 
+import com.miracle.rpc.serializer.SerializerKeys;
 import lombok.Data;
 
 /**
@@ -25,10 +26,14 @@ public class RpcConfig {
     /**
      * 服务端端口
      */
-    private Integer serverPort = 8080;
+    private Integer serverPort = 8081;
     /**
      * 模拟服务
      */
     private boolean mock = false;
+    /**
+     * 序列化方式
+     */
+    private String serializer = SerializerKeys.JDK;
 
 }
