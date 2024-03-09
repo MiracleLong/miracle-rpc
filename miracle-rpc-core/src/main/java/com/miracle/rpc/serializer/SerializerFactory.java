@@ -8,17 +8,6 @@ import com.miracle.rpc.spi.SpiLoader;
  * @description 序列化工厂
  */
 public class SerializerFactory {
-    /**
-     * 序列化映射（实现单例）
-     */
-//    private static final Map<String, Serializer> KEY_SERIALIZER_MAP = new HashMap<String, Serializer>() {
-//        {
-//            put(SerializerKeys.JDK, new JdkSerializer());
-//            put(SerializerKeys.JSON, new JsonSerializer());
-//            put(SerializerKeys.KRYO, new KryoSerializer());
-//            put(SerializerKeys.HESSIAN, new HessianSerializer());
-//        }
-//    };
 
     static {
         SpiLoader.load(Serializer.class);
@@ -27,7 +16,7 @@ public class SerializerFactory {
     /**
      * 默认序列化器
      */
-    private static final Serializer DEFAULT_SERIALIZER = new JdkSerializer();
+    private static  Serializer DEFAULT_SERIALIZER;
 
     /**
      * 获取实例
@@ -36,7 +25,14 @@ public class SerializerFactory {
      * @return
      */
     public static Serializer getInstance(String key) {
-//        return KEY_SERIALIZER_MAP.getOrDefault(key, DEFAULT_SERIALIZER);
+        if (DEFAULT_SERIALIZER == null) {
+            synchronized (SerializerFactory.class) {
+                if (DEFAULT_SERIALIZER == null) {
+                    SpiLoader.load(Serializer.class);
+                    DEFAULT_SERIALIZER = new JdkSerializer();
+                }
+            }
+        }
         return SpiLoader.getInstance(Serializer.class, key);
     }
 }
