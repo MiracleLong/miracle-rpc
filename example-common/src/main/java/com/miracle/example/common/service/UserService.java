@@ -17,7 +17,12 @@ public interface UserService {
      */
     User getUser(User user);
 
-    default Short getNumber() {
+    /**
+     * 新方法，返回数字
+     *
+     * @return
+     */
+    default short getNumber(){
         return 1;
     }
 }

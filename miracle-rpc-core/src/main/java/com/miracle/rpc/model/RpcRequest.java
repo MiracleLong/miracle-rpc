@@ -1,4 +1,4 @@
-package rpc.model;
+package com.miracle.rpc.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,17 +22,14 @@ public class RpcRequest implements Serializable {
      * 服务名称
      */
     private String serviceName;
-
     /**
      * 方法名称
      */
     private String methodName;
-
     /**
      * 参数类型列表
      */
     private Class<?>[] parameterTypes;
-
     /**
      * 参数列表
      */

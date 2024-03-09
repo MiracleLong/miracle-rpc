@@ -1,4 +1,4 @@
-package rpc.registry;
+package com.miracle.rpc.registry;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

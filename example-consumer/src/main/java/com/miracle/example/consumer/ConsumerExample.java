@@ -2,9 +2,9 @@ package com.miracle.example.consumer;
 
 import com.miracle.example.common.model.User;
 import com.miracle.example.common.service.UserService;
-import rpc.config.RpcConfig;
-import rpc.proxy.ServiceProxyFactory;
-import rpc.utils.ConfigUtils;
+import com.miracle.rpc.config.RpcConfig;
+import com.miracle.rpc.proxy.ServiceProxyFactory;
+import com.miracle.rpc.utils.ConfigUtils;
 
 /**
  * @author dargon
@@ -13,19 +13,20 @@ import rpc.utils.ConfigUtils;
  */
 public class ConsumerExample {
     public static void main(String[] args) {
-        //RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
-        //System.out.println(rpcConfig);
+        // 获取代理
+        RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
+        System.out.println(rpcConfig);
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();
-        user.setName("miracle");
-        //调用
+        user.setName("测试用户");
+        // 调用
         User newUser = userService.getUser(user);
-        if (newUser != null){
-            System.out.println("调用成功，返回值为：" + newUser.getName());
+        if (newUser == null) {
+            System.out.println("user is null");
         } else {
-            System.out.println("调用失败");
+            System.out.println(user.getName());
         }
         long number = userService.getNumber();
-        System.out.println("number = " + number);
+        System.out.println(number);
     }
 }

@@ -1,10 +1,10 @@
 package com.miracle.example.provider;
 
 import com.miracle.example.common.service.UserService;
-import rpc.RpcApplication;
-import rpc.registry.LocalRegistry;
-import rpc.server.HttpServer;
-import rpc.server.VertxHttpServer;
+import com.miracle.rpc.RpcApplication;
+import com.miracle.rpc.registry.LocalRegistry;
+import com.miracle.rpc.server.HttpServer;
+import com.miracle.rpc.server.VertxHttpServer;
 
 /**
  * @author dargon
@@ -17,8 +17,8 @@ public class ProviderExample {
         // 初始化配置
         RpcApplication.init();
         System.out.println("启动服务");
-        //注册服务
-        LocalRegistry.register(UserService.class.getName(), ProviderExample.class);
+        //注册服务 特别注意服务注册到本地注册中心
+        LocalRegistry.register(UserService.class.getName(), UserServiceImpl.class);
         // 启动服务
         HttpServer httpServer = new VertxHttpServer();
         httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());

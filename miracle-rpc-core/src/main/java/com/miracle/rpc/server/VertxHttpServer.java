@@ -1,4 +1,4 @@
-package rpc.server;
+package com.miracle.rpc.server;
 
 import io.vertx.core.Vertx;
 

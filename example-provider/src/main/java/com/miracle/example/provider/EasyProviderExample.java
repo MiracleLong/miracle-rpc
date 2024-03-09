@@ -1,9 +1,9 @@
 package com.miracle.example.provider;
 
 import com.miracle.example.common.service.UserService;
-import rpc.registry.LocalRegistry;
-import rpc.server.HttpServer;
-import rpc.server.VertxHttpServer;
+import com.miracle.rpc.registry.LocalRegistry;
+import com.miracle.rpc.server.HttpServer;
+import com.miracle.rpc.server.VertxHttpServer;
 
 
 /**
@@ -11,6 +11,7 @@ import rpc.server.VertxHttpServer;
  * @create 2024-02-25
  * @description easy provider example
  */
+@Deprecated
 public class EasyProviderExample {
 
     public static void main(String[] args) {

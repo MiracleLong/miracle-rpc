@@ -1,9 +1,9 @@
-package rpc;
+package com.miracle.rpc;
 
+import com.miracle.rpc.config.RpcConfig;
+import com.miracle.rpc.constant.RpcConstant;
+import com.miracle.rpc.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
-import rpc.config.RpcConfig;
-import rpc.constant.RpcConstant;
-import rpc.utils.ConfigUtils;
 
 /**
  * @author dargon

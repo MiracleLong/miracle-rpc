@@ -1,4 +1,4 @@
-package rpc.serializer;
+package com.miracle.rpc.serializer;
 
 import java.io.IOException;
 

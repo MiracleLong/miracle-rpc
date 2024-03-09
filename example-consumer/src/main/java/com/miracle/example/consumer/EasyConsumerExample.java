@@ -2,7 +2,7 @@ package com.miracle.example.consumer;
 
 import com.miracle.example.common.model.User;
 import com.miracle.example.common.service.UserService;
-import rpc.proxy.ServiceProxyFactory;
+import com.miracle.rpc.proxy.ServiceProxyFactory;
 
 /**
  * @author dargon
@@ -15,9 +15,10 @@ public class EasyConsumerExample {
         // 静态代理
 //        UserService userService = new UserServiceProxy();
         // 动态代理
+
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();
-        user.setName("miracle");
+        user.setName("测试用户");
         // 调用
         User newUser = userService.getUser(user);
         if (newUser != null) {

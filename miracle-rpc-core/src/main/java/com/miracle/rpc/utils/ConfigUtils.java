@@ -1,4 +1,4 @@
-package rpc.utils;
+package com.miracle.rpc.utils;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.dialect.Props;

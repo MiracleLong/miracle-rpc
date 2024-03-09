@@ -1,4 +1,4 @@
-package rpc.server;
+package com.miracle.rpc.server;
 
 /**
  * @author dargon
