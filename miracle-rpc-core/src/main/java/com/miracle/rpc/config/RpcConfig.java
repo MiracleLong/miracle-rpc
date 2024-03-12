@@ -3,6 +3,8 @@ package com.miracle.rpc.config;
 import com.miracle.rpc.serializer.SerializerKeys;
 import lombok.Data;
 
+import java.rmi.registry.LocateRegistry;
+
 /**
  * @author dargon
  * @create 2024-03-04
@@ -35,5 +37,7 @@ public class RpcConfig {
      * 序列化方式
      */
     private String serializer = SerializerKeys.JDK;
+
+    private RegistryConfig registryConfig = new RegistryConfig();
 
 }

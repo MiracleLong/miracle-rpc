@@ -1,7 +1,10 @@
 package com.miracle.rpc;
 
+import com.miracle.rpc.config.RegistryConfig;
 import com.miracle.rpc.config.RpcConfig;
 import com.miracle.rpc.constant.RpcConstant;
+import com.miracle.rpc.registry.Registry;
+import com.miracle.rpc.registry.RegistryFactory;
 import com.miracle.rpc.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +37,11 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig){
         rpcConfig = newRpcConfig;
         log.info("init rpc config:{}", newRpcConfig.toString());
+        // 注册中心初始化
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, config = {}", registryConfig);
     }
 
     /**
