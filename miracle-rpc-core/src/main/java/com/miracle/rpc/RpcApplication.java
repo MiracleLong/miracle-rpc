@@ -36,12 +36,13 @@ public class RpcApplication {
      */
     public static void init(RpcConfig newRpcConfig){
         rpcConfig = newRpcConfig;
-        log.info("init rpc config:{}", newRpcConfig.toString());
+        log.info("rpc init, config = {}", newRpcConfig.toString());
         // 注册中心初始化
         RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
         Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
         registry.init(registryConfig);
         log.info("registry init, config = {}", registryConfig);
+
     }
 
     /**
