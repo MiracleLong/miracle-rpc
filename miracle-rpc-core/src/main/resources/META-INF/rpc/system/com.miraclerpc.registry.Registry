@@ -1,0 +1,2 @@
+etcd=com.miracle.rpc.registry.EtcdRegistry
+zookeeper=com.miracle.rpc.registry.ZooKeeperRegistry
