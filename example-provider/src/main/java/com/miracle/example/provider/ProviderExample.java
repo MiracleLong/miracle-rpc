@@ -8,8 +8,7 @@ import com.miracle.rpc.model.ServiceMetaInfo;
 import com.miracle.rpc.registry.LocalRegistry;
 import com.miracle.rpc.registry.Registry;
 import com.miracle.rpc.registry.RegistryFactory;
-import com.miracle.rpc.server.HttpServer;
-import com.miracle.rpc.server.VertxHttpServer;
+import com.miracle.rpc.server.tcp.VertxTcpServer;
 
 /**
  * @author dargon
@@ -19,26 +18,29 @@ import com.miracle.rpc.server.VertxHttpServer;
 public class ProviderExample {
     public static void main(String[] args)
     {
-        // 初始化配置
+        // RPC 框架初始化
         RpcApplication.init();
-        System.out.println("启动服务");
-        //注册服务 特别注意服务注册到本地注册中心
+
+        // 注册服务
         String serviceName = UserService.class.getName();
-        LocalRegistry.register(UserService.class.getName(), UserServiceImpl.class);
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+
         // 注册服务到注册中心
         RpcConfig rpcConfig = RpcApplication.getRpcConfig();
         RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
         Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
         serviceMetaInfo.setServiceName(serviceName);
-        serviceMetaInfo.setServiceAddress(rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort());
+        serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+        serviceMetaInfo.setServicePort(rpcConfig.getServerPort());
         try {
             registry.register(serviceMetaInfo);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        // 启动服务
-        HttpServer httpServer = new VertxHttpServer();
-        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        // 启动 TCP 服务
+        VertxTcpServer vertxTcpServer = new VertxTcpServer();
+        vertxTcpServer.doStart(8080);
     }
 }
