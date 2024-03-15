@@ -57,6 +57,11 @@ public class ConsistentHashLoadBalancer implements LoadBalancer{
      * @return
      */
     private int getHash(Object key) {
-        return key.hashCode();
+        // 使用 JDK 提供的高效哈希算法
+        if (key == null) {
+            return 0;
+        }
+        int h = key.hashCode();
+        return h ^ (h >>> 16);
     }
 }
