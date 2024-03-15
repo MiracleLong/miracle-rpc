@@ -1,5 +1,6 @@
 package com.miracle.rpc.config;
 
+import com.miracle.rpc.loadbalancer.LoadBalancerKeys;
 import com.miracle.rpc.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -37,6 +38,11 @@ public class RpcConfig {
      * 序列化方式
      */
     private String serializer = SerializerKeys.JDK;
+
+    /**
+     * 负载均衡器
+     */
+    private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
 
     /**
      * 注册中心配置

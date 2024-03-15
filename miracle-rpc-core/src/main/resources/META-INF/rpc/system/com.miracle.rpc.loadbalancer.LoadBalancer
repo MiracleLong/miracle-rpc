@@ -1,0 +1,3 @@
+roundRobin=com.miracle.rpc.loadbalancer.RoundRobinLoadBalancer
+random=com.miracle.rpc.loadbalancer.RandomLoadBalancer
+consistentHash=com.miracle.rpc.loadbalancer.ConsistentHashLoadBalancer
