@@ -1,10 +1,9 @@
 package com.miracle.rpc.config;
 
+import com.miracle.rpc.fault.retry.RetryStrategyKeys;
 import com.miracle.rpc.loadbalancer.LoadBalancerKeys;
 import com.miracle.rpc.serializer.SerializerKeys;
 import lombok.Data;
-
-import java.rmi.registry.LocateRegistry;
 
 /**
  * @author dargon
@@ -48,5 +47,10 @@ public class RpcConfig {
      * 注册中心配置
      */
     private RegistryConfig registryConfig = new RegistryConfig();
+
+    /**
+     * 重试策略
+     */
+    private String retryStrategy = RetryStrategyKeys.NO;
 
 }

@@ -1,0 +1,2 @@
+no=com.miracle.rpc.fault.retry.NoRetryStrategy
+fixedInterval=com.miracle.rpc.fault.retry.FixedIntervalRetryStrategy
