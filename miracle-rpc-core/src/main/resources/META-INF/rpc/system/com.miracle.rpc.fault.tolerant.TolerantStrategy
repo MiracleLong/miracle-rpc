@@ -1,0 +1,4 @@
+failBack=com.miracle.rpc.fault.tolerant.FailBackTolerantStrategy
+failFast=com.miracle.rpc.fault.tolerant.FailFastTolerantStrategy
+failOver=com.miracle.rpc.fault.tolerant.FailOverTolerantStrategy
+failSafe=com.miracle.rpc.fault.tolerant.FailSafeTolerantStrategy

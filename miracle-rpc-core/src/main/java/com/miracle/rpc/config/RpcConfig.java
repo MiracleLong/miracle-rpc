@@ -1,6 +1,7 @@
 package com.miracle.rpc.config;
 
 import com.miracle.rpc.fault.retry.RetryStrategyKeys;
+import com.miracle.rpc.fault.tolerant.TolerantStrategyKeys;
 import com.miracle.rpc.loadbalancer.LoadBalancerKeys;
 import com.miracle.rpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -52,5 +53,10 @@ public class RpcConfig {
      * 重试策略
      */
     private String retryStrategy = RetryStrategyKeys.NO;
+
+    /**
+     * 容错策略
+     */
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 
 }
